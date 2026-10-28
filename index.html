@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Safety Stick</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-level="idle">
+<header>
+  <h1>Smart Safety Stick</h1>
+  <div class="conn">
+    <span id="pill" class="pill">Not connected</span>
+    <button id="connect" class="btn">Connect stick</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-live="polite">
+    <svg viewBox="0 0 240 240" class="ring" aria-hidden="true">
+      <circle class="track" cx="120" cy="120" r="100"/>
+      <circle id="arc" class="arc" cx="120" cy="120" r="100"/>
+    </svg>
+    <div class="hero-text">
+      <div class="big"><span id="dist">--</span><small>cm</small></div>
+      <div id="state" class="state">Waiting for the stick</div>
+    </div>
+  </section>
+
+  <section class="tiles">
+    <article class="tile">
+      <h2>Light</h2>
+      <p id="lightVal" class="val">--</p>
+      <p id="lightTxt" class="sub">No reading yet</p>
+    </article>
+    <article class="tile">
+      <h2>Ground</h2>
+      <p id="waterVal" class="val">--</p>
+      <p id="waterTxt" class="sub">No reading yet</p>
+    </article>
+    <article class="tile wide">
+      <h2>Location</h2>
+      <p id="gpsVal" class="val small">Searching for satellites</p>
+      <a id="mapLink" class="sub" href="#" target="_blank" rel="noopener" hidden>Open map</a>
+    </article>
+  </section>
+
+  <section class="panel sosbox">
+    <button id="sos" class="btn sos">Send SOS with my location</button>
+    <label class="field">Emergency number
+      <input id="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel">
+    </label>
+    <p id="sosTxt" class="sub">The GSM module sends the SMS when the stick is connected. Without the stick, your phone's messaging app opens instead.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Settings</h2>
+    <div class="grid2">
+      <label class="check"><input type="checkbox" id="voice" checked> Voice alerts</label>
+      <label class="field">Voice language
+        <select id="lang">
+          <option value="en-IN">English</option>
+          <option value="hi-IN">Hindi</option>
+          <option value="te-IN">Telugu</option>
+        </select>
+      </label>
+      <label class="field">Warn at <b id="wv">100</b> cm
+        <input type="range" id="warn" min="60" max="200" value="100">
+      </label>
+      <label class="field">Danger at <b id="dv">40</b> cm
+        <input type="range" id="danger" min="15" max="80" value="40">
+      </label>
+    </div>
+    <h2>Test outputs</h2>
+    <div class="row">
+      <button class="btn alt" data-test="BZ">Buzzer</button>
+      <button class="btn alt" data-test="VB">Vibration</button>
+      <button class="btn alt" data-test="LED">LED</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Demo mode (no hardware)</h2>
+    <label class="field">Obstacle distance
+      <input type="range" id="simDist" min="5" max="250" value="250">
+    </label>
+    <label class="field">Light level
+      <input type="range" id="simLight" min="0" max="1023" value="800">
+    </label>
+    <label class="check"><input type="checkbox" id="simWater"> Water on the ground</label>
+    <h2>Activity</h2>
+    <div id="log" aria-live="off"></div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
